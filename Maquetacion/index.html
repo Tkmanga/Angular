@@ -45,5 +45,68 @@
         <h1>Bienvenidos al curso de react con victor robles de victorroblesweb.es</h1>
         <a href="#" class="btn-white">Ir al blog</a>
     </div>
+
+    <div class="center">
+        <section id="content">
+            <h2 class="subheader">Ultimos articulos</h2>
+
+            <!--Listado articulos -->
+            <div id="articles">
+                <article class="article-item" id="article-template">
+                    <div class="image-wrap">
+                        <img src="https://cdn.pixabay.com/photo/2018/07/14/15/27/cafe-3537801_960_720.jpg" alt="paisaje">
+                    </div>
+                    <h2>Articulo de prueba</h2>
+                    <span class="date">
+                    Hace 5 minutos
+                </span>
+                    <a href="#">Leer mas</a>
+                    <div class="clearfix"></div>
+                </article>
+                <!-- añadir articulos via js -->
+            </div>
+        </section>
+
+
+        <script type="text/javascript">
+            window.addEventListener("load",function () {
+
+                var template = document.getElementById('article-template');
+                var articles = document.getElementById("articles");
+
+                for(var i = 0; i<=5;i++){
+                    var clonado = template.cloneNode(true);
+                    clonado.removeAttribute("id");
+                    var h2 = clonado.getElementsByTagName("h2")[0];
+                    h2.innerHTML = h2.textContent+ ' '+i;
+                    articles.appendChild(clonado);
+
+                }
+            })
+        </script>
+
+        <aside id="sidebar">
+            <div id="nav-blog" class="sidebar-item">
+                <h3>Puedes hacer esto</h3>
+                <a href="#" class="btn btn-succes">Crear articulo</a>
+            </div>
+            <div id="search" class="sidebar-item">
+                <h3>Buscador</h3>
+                <p>Encuentra el articulo que buscas</p>
+                <form action="">
+                    <input type="text" name="search"/>
+                    <input type="submit" class="btn" name="submit" value="buscar">
+                </form>
+            </div>
+        </aside>
+        <div class="clearfix"></div>
+    </div>
+    <footer id="footer">
+        <div class="center">
+            <p>
+                &copy;Master en FW para javascript de victorRobles web
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
