@@ -1,0 +1,8 @@
+{
+  "personas" :[
+    {"nombre":"jose","apelldio":"tacacho","nickname":"lala"},
+    {"nombre":"jose","apelldio":"tacacho1","nickname":"lala1"},
+    {"nombre":"jose","apelldio":"tacacho2","nickname":"lala2"},
+    {"nombre":"jose","apelldio":"tacacho3","nickname":"lala5"}
+  ]
+}
