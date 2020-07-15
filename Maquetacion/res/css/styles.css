@@ -356,7 +356,7 @@ textarea {
         width: auto;
     }
 }
-@media (max-width: 797px){
+@media (max-width: 718px){
     #logo{
         width: 300px;
     }
@@ -364,6 +364,8 @@ textarea {
     #menu{
         width: auto;
     }
+
+
 
 }
 @media (max-width: 797px){
