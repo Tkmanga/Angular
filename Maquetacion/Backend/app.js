@@ -9,14 +9,18 @@ var bodyParse = require('body-parser');
 var app = express();
 //cargar ficheros rutas
 
+var article_routes = require('./routes/article');
+
 //middlewares
 app.use(bodyParse.urlencoded({extended:false}));
 app.use(bodyParse.json());
 //CORS
 
 //aniadir prefijo a rutas
-
+app.use('/api',article_routes);
 //ruta de prueba para el api rest
+
+
 
 /*
 app.post('/probando',function (req,res) {

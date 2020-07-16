@@ -16,4 +16,7 @@ var controller = {
             message: 'soy la accion test de mi controlador de articulos '
         });
     }
-};
+}; //end controller
+
+module.exports = controller;
+
