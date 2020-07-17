@@ -2,3 +2,8 @@
 <h2>{{year}}</h2>
 <p>{{comentario}}</p>
 <p>Hola soy un parrafo hardcodeado</p>
+<button (click)="ocultarPeliculas()">Ocultar peliculas</button>
+<div *ngIf="mostrarPeliculas">
+  <app-peliculas></app-peliculas>
+</div>
+
