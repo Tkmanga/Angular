@@ -1,0 +1,10 @@
+<h1 class="subheader">{{title}}</h1>
+<div *ngIf="nombre && apellido">
+  <h2>Nombre:{{nombre}} <br>Apellido: {{apellido}}</h2>
+</div>
+
+<div *ngIf="!nombre || !apellido">
+  <h2>No se recibieron parametros suficientes</h2>
+</div>
+
+<button (click)="redireccion()">Clickeame!</button>
