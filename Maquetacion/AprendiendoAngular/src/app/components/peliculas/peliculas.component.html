@@ -8,11 +8,13 @@
         Pelicula favorita
       </h2>
       <h4>
-        {{favorita.title}}
+        {{favorita.title | lowercase}} <!-- lo segundo es una pipe de transformacion de texto-->
       </h4>
       <h5>
-        {{favorita.year}}
+        {{favorita.year | date:'full' }}
       </h5>
+      <h5>{{this.favorita.year | esPar}}</h5>
+      <h5>{{this.fecha | date: 'short'}}</h5> <!-- hay mcuhas pipes para modificar nuestro texto -->
     </div>
     <!--
     <h1 class="subheader">{{titulo}}</h1>
