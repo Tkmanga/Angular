@@ -337,6 +337,8 @@ textarea {
     margin-bottom: 10px;
 }
 
+
+
 /*RESPONSIVE*/
 
 @media (max-width: 1488px){
@@ -345,7 +347,6 @@ textarea {
         width: 85%;
     }
 }
-
 @media (max-width: 1314px){
     /*Se ejecutaran estos estilos*/
     .center{
@@ -356,7 +357,7 @@ textarea {
         width: auto;
     }
 }
-@media (max-width: 797px){
+@media (max-width: 718px){
     #logo{
         width: 300px;
     }
@@ -364,6 +365,8 @@ textarea {
     #menu{
         width: auto;
     }
+
+
 
 }
 @media (max-width: 797px){
@@ -442,5 +445,5 @@ textarea {
         padding-top: 35px;
     }
 
-
 }
+

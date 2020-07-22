@@ -1,0 +1,45 @@
+<app-slider [nombre]="'Pelicula'" [size]="'small'"></app-slider>
+
+<div class="center">
+  <section id="content">
+
+    <div id="favorita" *ngIf="favorita">
+      <h2 class="subheader" >
+        Pelicula favorita
+      </h2>
+      <h4>
+        {{favorita.title | lowercase}} <!-- lo segundo es una pipe de transformacion de texto-->
+      </h4>
+      <h5>
+        {{favorita.year | date:'full' }}
+      </h5>
+      <h5>{{this.favorita.year | esPar}}</h5>
+      <h5>{{this.fecha | date: 'short'}}</h5> <!-- hay mcuhas pipes para modificar nuestro texto -->
+    </div>
+    <!--
+    <h1 class="subheader">{{titulo}}</h1>
+    <button (click)="cambiarTitulo()">Pulsame</button>
+    <hr>
+    <div *ngIf="peliculas.length<=3">
+      Hay {{peliculas.length}}
+    </div>
+
+    <div *ngIf="peliculas.length>3">
+      Hay muchas peliculas
+    </div>
+
+    <hr>
+    <h2 class="subheader">Listado de peliculas</h2>
+    -->
+
+    <div id="articles" *ngIf="peliculas">
+      <div *ngFor="let pelicula of peliculas; let i = index">
+        <app-pelicula
+          [pelicula]="pelicula"
+          (MarcarFavorita)="mostrarFavorita($event)"
+        ></app-pelicula>
+      </div>
+    </div>
+  </section>
+  <app-sidebar></app-sidebar>
+</div>
