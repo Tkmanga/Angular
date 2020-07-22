@@ -11,10 +11,11 @@ import { PaginaComponent} from "./components/pagina/pagina.component";
 import { PeliculasComponent} from "./components/peliculas/peliculas.component";
 import { ErrorComponent} from "./components/error/error.component";
 import {ArticleComponent} from "./components/article/article.component";
-
+import {SearchComponent} from "./components/search/search.component";
 //Array de rutas
 const appRoutes: Routes = [
   {path: '',component: HomeComponent},
+  {path:'buscar/:search',component: SearchComponent},
   {path: 'blog',component: BlogComponent},
   {path: 'blog/articulo/:id',component: ArticleComponent},
   {path: 'formulario',component: FormularioComponent},
