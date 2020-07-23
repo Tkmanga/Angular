@@ -12,10 +12,13 @@ import { PeliculasComponent} from "./components/peliculas/peliculas.component";
 import { ErrorComponent} from "./components/error/error.component";
 import {ArticleComponent} from "./components/article/article.component";
 import {SearchComponent} from "./components/search/search.component";
+import {ArticleNewComponent} from "./components/article-new/article-new.component";
+
 //Array de rutas
 const appRoutes: Routes = [
   {path: '',component: HomeComponent},
   {path:'buscar/:search',component: SearchComponent},
+  {path: 'blog/crear', component: ArticleNewComponent},
   {path: 'blog',component: BlogComponent},
   {path: 'blog/articulo/:id',component: ArticleComponent},
   {path: 'formulario',component: FormularioComponent},
@@ -24,7 +27,6 @@ const appRoutes: Routes = [
   {path: 'pagina-de-pruebas/:nombre/:apellido',component: PaginaComponent},
   {path: 'peliculas',component: PeliculasComponent},
   {path: '**',component: ErrorComponent}
-
   ]
 
 // exportar el modulo de rutas

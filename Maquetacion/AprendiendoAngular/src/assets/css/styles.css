@@ -213,14 +213,20 @@ body {
   background-color: black;
 }
 
-input[type="text"],textarea{
+input[type="text"],input[type="file"],textarea{
   width: 100%;
   min-height: 30px;
   border: 1px solid #ccc;
   margin-bottom: 5px;
   padding: 3px;
   transition: 300ms all;
+}
 
+.afu-attach-pin{
+  display: block !important;
+  width: 100% !important;
+  max-width: 90% !important;
+  margin-top: 15px;
 }
 
 input[type="text"]:focus,textarea:focus{

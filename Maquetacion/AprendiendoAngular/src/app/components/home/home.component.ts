@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     this._articleService.getArticles(true).subscribe(response=>{
       if (response.articles){
         this.articles = response.articles;
-        console.log(this.articles)
       }
     },error => {
       console.log(error);
