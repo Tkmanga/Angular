@@ -20,18 +20,12 @@ export class ArticleNewComponent implements OnInit {
     formatsAllowed: ".jpg,.png,.gif,.jpeg",
     maxSize: "50",
     uploadAPI:  {
-      url:Global.url+'upload-image',
-      method:"POST",
-      params: {
-        'page': '1'
-      },
-      responseType: 'blob',
+      url:Global.url+'upload-image'
     },
     theme: "attachPin",
     hideProgressBar: true,
     hideResetBtn: true,
     hideSelectBtn: false,
-    fileNameIndex: true,
     replaceTexts: {
       selectFileBtn: 'Select Files',
       resetBtn: 'Reset',
@@ -39,8 +33,7 @@ export class ArticleNewComponent implements OnInit {
       dragNDropBox: 'Drag N Drop',
       attachPinBtn: 'Sube tu imagen para el articulo...',
       afterUploadMsg_success: 'Successfully Uploaded !',
-      afterUploadMsg_error: 'Upload Failed !',
-      sizeLimit: 'Size Limit'
+      afterUploadMsg_error: 'Upload Failed !'
     }
   };
 
@@ -61,7 +54,7 @@ export class ArticleNewComponent implements OnInit {
       response => {
         if(response.status == 'success'){
           this.article = response.article;
-          this.estado = 'sucess';
+          this.estado = 'success';
           this._router.navigate(['/blog']);
 
         }else {
@@ -77,6 +70,7 @@ export class ArticleNewComponent implements OnInit {
   }
 
   imageUplo(data){
-    console.log(data.im);
+    let image_data = JSON.parse(data.body.image);
+    this.article = image_data;
   }
 }
