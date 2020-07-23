@@ -5,9 +5,9 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Global} from "../../services/global";
 
 @Component({
-  selector: 'app-article-new',
-  templateUrl: './article-new.component.html',
-  styleUrls: ['./article-new.component.css'],
+  selector: 'app-article-edit',
+  templateUrl: '../article-new/article-new.component.html',
+  styleUrls: ['./article-edit.component.css'],
   providers: [ArticleService]
 })
 
@@ -15,6 +15,7 @@ export class ArticleNewComponent implements OnInit {
   public title: string;
   public article: Article;
   public estado: string;
+  public is_edit: boolean;
   afuConfig = {
     multiple: false,
     formatsAllowed: ".jpg,.png,.gif,.jpeg",
@@ -41,9 +42,10 @@ export class ArticleNewComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _articleService: ArticleService
-    ) {
-    this.title = 'Crear Articulo'
+  ) {
+    this.title = 'Editar Articulo'
     this.article = new Article('','','',null,null)
+    this.is_edit = true;
   }
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class ArticleNewComponent implements OnInit {
       },
       error => {
         this.estado = "error";
-       console.log(this.estado);
+        console.log(this.estado);
       }
     );
   }
@@ -73,3 +75,4 @@ export class ArticleNewComponent implements OnInit {
     this.article.image = data.body.image;
   }
 }
+
