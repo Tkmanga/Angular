@@ -233,7 +233,9 @@ input[type="text"]:focus,textarea:focus{
   box-shadow: 0px 0px 2px #444 inset;
 }
 
-
+.image-thumb img{
+  width: 150px;
+}
 
 #footer{
   background-color: #f7f7f7;
