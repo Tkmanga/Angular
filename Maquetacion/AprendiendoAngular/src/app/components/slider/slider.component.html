@@ -4,5 +4,5 @@
 }">
   <h1>{{nombre}}</h1>
 
-  <a routerLink="/blog" href="#" class="btn-white" *ngIf="!size || size=='big'">Ir al blog</a>
+  <a [routerLink]="['/blog']" ] href="#" class="btn-white" *ngIf="!size || size=='big'">Ir al blog</a>
 </div>

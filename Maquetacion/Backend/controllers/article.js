@@ -40,8 +40,11 @@ var controller = {
             //asignar valores
             article.title = params.title;
             article.content = params.content;
-            article.image = null;
-
+            if(params.image){
+                article.image = params.image;
+            }else{
+                article.image = null;
+            }
 
             //guardar articulo
             article.save((err, articleStored)=>{
@@ -54,7 +57,7 @@ var controller = {
 
                 //devolver una respuesta
                 return res.status(200).send({
-                    status: 'sucess',
+                    status: 'success',
                     article: articleStored
                 });
             })
@@ -89,7 +92,7 @@ var controller = {
                 });
             }
             return res.status(200).send({
-                status: 'sucess',
+                status: 'success',
                 articles
             });
         });
@@ -145,7 +148,7 @@ var controller = {
         }catch(e){
             return res.status(200).send({
                 status: 'error',
-                message: 'faltan datoSs'
+                message: 'faltan datos'
             });
         }
 
@@ -175,7 +178,7 @@ var controller = {
         }else{
             return res.status(200).send({
                 status: 'error',
-                message: 'la validacion no es correnta '
+                message: 'la validacion no es correcta '
             });
         }
         //devolver respuesta
@@ -239,18 +242,27 @@ var controller = {
             //valido es todo ?
             var articleId = req.params.id;
             //buscr el articulo asignarle el nombre de la imagen y actualizarlo
-            Article.findOneAndUpdate({_id: articleId},{image:file_name},{new:true},(err,articleUpdated) =>{
-                if(err || !articleUpdated){
+
+            if(articleId){
+                Article.findOneAndUpdate({_id: articleId},{image:file_name},{new:true},(err,articleUpdated) =>{
+                    if(err || !articleUpdated){
+                        return res.status(200).send({
+                            status: 'error',
+                            message: 'Error al guardar la imagen de articulo'
+                        })
+                    }
                     return res.status(200).send({
-                        status: 'error',
-                        message: 'Error al guardar la imagen de articulo'
-                    })
-                }
+                        status: 'success',
+                        article: articleUpdated
+                    });
+                })
+            }else{
                 return res.status(200).send({
                     status: 'success',
-                    article: articleUpdated
+                    image: file_name
                 });
-            })
+            }
+
         }
 
     },
