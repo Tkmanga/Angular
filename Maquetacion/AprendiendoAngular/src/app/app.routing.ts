@@ -22,14 +22,13 @@ const appRoutes: Routes = [
   {path: 'blog/crear', component: ArticleNewComponent},
   {path: 'blog',component: BlogComponent},
   {path: 'blog/articulo/:id',component: ArticleComponent},
+  {path: 'blog/editar/:id',component: ArticleEditComponent},
   {path: 'formulario',component: FormularioComponent},
   {path: 'pagina-de-pruebas',component: PaginaComponent},
   {path: 'pagina-de-pruebas/:nombre',component: PaginaComponent},
   {path: 'pagina-de-pruebas/:nombre/:apellido',component: PaginaComponent},
   {path: 'peliculas',component: PeliculasComponent},
-  {path: '**',component: ErrorComponent},
-  {path: 'blog/editar/:id',component: ArticleEditComponent}
-
+  {path: '**',component: ErrorComponent}
   ]
 
 // exportar el modulo de rutas

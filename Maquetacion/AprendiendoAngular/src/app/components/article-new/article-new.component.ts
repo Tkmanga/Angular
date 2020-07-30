@@ -3,6 +3,8 @@ import {Article} from "../../models/article";
 import {ArticleService} from "../../services/article.service";
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Global} from "../../services/global";
+import swal from "sweetalert";
+
 
 @Component({
   selector: 'app-article-new',
@@ -12,9 +14,10 @@ import {Global} from "../../services/global";
 })
 
 export class ArticleNewComponent implements OnInit {
-  public title: string;
+  public page_title: string;
   public article: Article;
   public estado: string;
+  public is_edit: boolean;
   afuConfig = {
     multiple: false,
     formatsAllowed: ".jpg,.png,.gif,.jpeg",
@@ -42,8 +45,9 @@ export class ArticleNewComponent implements OnInit {
     private _router: Router,
     private _articleService: ArticleService
     ) {
-    this.title = 'Crear Articulo'
+    this.page_title = 'Crear Articulo'
     this.article = new Article('','','',null,null)
+    this.is_edit = false;
   }
 
   ngOnInit(): void {
@@ -55,10 +59,15 @@ export class ArticleNewComponent implements OnInit {
         if(response.status == 'success'){
           this.article = response.article;
           this.estado = 'success';
+          //alerta
+          swal({text:'Articulo creado correctamente!', icon: 'success'}
+          );
           this._router.navigate(['/blog']);
 
         }else {
           this.estado = 'error en la respuesta';
+          swal({text:'Fallo al crear!', icon: 'error'}
+          );
           console.log(this.estado);
         }
       },

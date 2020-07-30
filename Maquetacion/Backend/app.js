@@ -1,19 +1,20 @@
 'use strict'
 
 //cargar modulos de node para crear servidor
-
 var express = require('express');
 var bodyParse = require('body-parser');
 
 //ejecutar express (http)
 var app = express();
-//cargar ficheros rutas
 
+//cargar ficheros rutas
 var article_routes = require('./routes/article');
+var auth_routes = require('./routes/auth');
 
 //middlewares
 app.use(bodyParse.urlencoded({extended:false}));
 app.use(bodyParse.json());
+
 //CORS
 // Configurar cabeceras y cors
 app.use((req, res, next) => {
@@ -25,12 +26,11 @@ app.use((req, res, next) => {
 });
 //aniadir prefijo a rutas
 app.use('/api',article_routes);
+app.use('/auth',auth_routes);
 //ruta de prueba para el api rest
 
-
-
 /*
-app.post('/probando',function (req,res) {
+app.get('/probando',function (req,res) {
 
     var mensaje = req.body.hola;
     return res.status(200).send(
@@ -41,8 +41,7 @@ app.post('/probando',function (req,res) {
         }
     );
 });
-
- */
+*/
 
 //exportar modulos
 module.exports = app;
