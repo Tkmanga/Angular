@@ -9,7 +9,6 @@ var app = express();
 
 //cargar ficheros rutas
 var article_routes = require('./routes/article');
-var auth_routes = require('./routes/auth');
 
 //middlewares
 app.use(bodyParse.urlencoded({extended:false}));
@@ -26,7 +25,7 @@ app.use((req, res, next) => {
 });
 //aniadir prefijo a rutas
 app.use('/api',article_routes);
-app.use('/auth',auth_routes);
+
 //ruta de prueba para el api rest
 
 /*
