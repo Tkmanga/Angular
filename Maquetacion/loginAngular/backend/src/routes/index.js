@@ -5,7 +5,8 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 router.get('/api',(req,res) => res.send('hello worrld'));
-router.post('/signup',async(req,res) => {
+
+router.post('/api/signup',async(req,res) => {
     const {email, password} = req.body;
     const newUser = new User ({email, password});
 
@@ -15,7 +16,7 @@ router.post('/signup',async(req,res) => {
     res.status(200).json({token});
 
 });
-router.post('/signin',async(req,res) => {
+router.post('/api/signin',async(req,res) => {
     const {email, password} = req.body;
 
     const user = await User.findOne({email});
@@ -30,7 +31,7 @@ router.post('/signin',async(req,res) => {
     return res.status(200).json(token);
 
 });
-router.get('/task', (req,res)=>{
+router.get('/api/task', (req,res)=>{
     res.json([
         {
             _id: 1,
@@ -52,7 +53,7 @@ router.get('/task', (req,res)=>{
         }
     ])
 })
-router.get('/private-task',veryyToken,(req,res)=>{
+router.get('/api/private-task',veryyToken,(req,res)=>{
     res.json([
         {
             _id: 1,
@@ -80,7 +81,6 @@ function veryyToken(req,res,next){
     if(!req.headers.authorization){
         return res.status(401).send('acceso no autorizado');
     }
-
 
     const token = req.headers.authorization.split(' ')[1];
 

@@ -10,6 +10,8 @@ import {SignupComponent} from "./components/signup/signup.component";
 import {PrivateTaskComponent} from "./components/private-task/private-task.component";
 import {HomeComponent} from "./components/home/home.component";
 import {ErrorComponent} from "./components/error/error.component";
+
+import {AuthGuard} from "./auth.guard";
 //array de rutas
 
 const appRoutes: Routes = [
@@ -17,7 +19,7 @@ const appRoutes: Routes = [
   {path: 'signin', component: SigninComponent },
   {path: 'signup', component: SignupComponent },
   {path: 'task', component: TaskComponent },
-  {path: 'task/private', component: PrivateTaskComponent },
+  {path: 'private', component: PrivateTaskComponent, canActivate:[AuthGuard] },
   {path: '**', component: ErrorComponent }
 
 ];

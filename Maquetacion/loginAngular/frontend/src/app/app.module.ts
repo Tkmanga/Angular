@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {routing, appRoutingProviders} from "./app.routing";
 import {FormsModule} from "@angular/forms";
+
+import {AuthGuard} from "./auth.guard";
 import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
@@ -10,6 +12,7 @@ import { PrivateTaskComponent } from './components/private-task/private-task.com
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HeaderComponent } from './components/header/header.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -25,9 +28,10 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule,
     routing,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
