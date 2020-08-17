@@ -12,10 +12,14 @@ export class SigninComponent implements OnInit {
     email: '',
     password: ''
   }
+  public nombreWeb: string;
   constructor(
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    this.nombreWeb = 'SignIn'
+
+  }
 
   ngOnInit(): void {
   }

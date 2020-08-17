@@ -1,1 +1,6 @@
-<p>private-task works!</p>
+<h1>Private Tasks</h1>
+<ul class="list-group-item">
+  <li class="list-group-item" *ngFor="let task of tasks">
+    {{task._id}} - {{task.name}}: {{task.description}}
+  </li>
+</ul>

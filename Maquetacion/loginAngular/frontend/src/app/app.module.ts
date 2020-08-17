@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {routing, appRoutingProviders} from "./app.routing";
 import {FormsModule} from "@angular/forms";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 
 import {AuthGuard} from "./auth.guard";
 import { AppComponent } from './app.component';
@@ -12,7 +14,7 @@ import { PrivateTaskComponent } from './components/private-task/private-task.com
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HeaderComponent } from './components/header/header.component';
-import {HttpClientModule} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,11 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     HttpClientModule
   ],
-  providers: [appRoutingProviders,AuthGuard],
+  providers: [appRoutingProviders,AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

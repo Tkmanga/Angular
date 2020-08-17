@@ -12,8 +12,13 @@ export class SignupComponent implements OnInit {
     email: '',
     password: ''
   }
+
+  public nombreWeb :String;
+
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router) {
+    this.nombreWeb = 'SignUp'
+  }
 
   ngOnInit(): void {
   }
