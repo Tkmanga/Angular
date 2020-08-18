@@ -5,7 +5,6 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {Global} from "../../services/global";
 import swal from "sweetalert";
 
-
 @Component({
   selector: 'app-article-new',
   templateUrl: './article-new.component.html',
