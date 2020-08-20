@@ -38,12 +38,37 @@ router.get('/notes',async (req, res) => {
                 notes: documentos.map(documento=>{
                     return {
                         title: documento.title,
-                        description: documento.description
+                        description: documento.description,
+                        _id: documento._id
                     }
                 })
             }
             res.render('notes/all-notes',{notes:contexto.notes});
         })
 });
-router.get('')
+
+
+router.get('/notes/edit/:id', async (req, res) => {
+    const note = await Note.findById(req.params.id)
+        .then(
+            data => {
+                return {
+                    title: data.title,
+                    description: data.description,
+                    id: data.id
+                }
+            }
+        )
+    res.render('notes/edit-note',{note});
+
+})
+
+
+router.put('/notes/edit-note/:id',async  (req, res) => {
+    const {title, description} = req.body;
+    await Note.findByIdAndUpdate(req.params.id,{title,description})
+    req.flash('success_msg','note updated succesfully');
+    res.redirect(('/notes'));
+})
+
 module.exports = router;
