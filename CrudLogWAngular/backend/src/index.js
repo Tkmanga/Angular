@@ -4,7 +4,10 @@ const  app  = exp();
 const exphbs = require('express-handlebars');
 const methodOverride = require('method-override');
 const expSession = require('express-session');
+const flash = require('connect-flash');
 const path = require('path');
+
+
 require('./database');
 
 //setting
@@ -26,8 +29,15 @@ app.use(expSession({
     resave: true,
     saveUninitialized: true
 }));
+app.use(flash());
 
 //global variables
+app.use((req,res,next)=>{
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+
+    next();
+})
 
 //Routes
 app.use(require('./routes/index'));
