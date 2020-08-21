@@ -9,9 +9,9 @@ const UserSchema = new Schema({
     date: {type:Date, default: Date.now()}
 });
 
-UserSchema.methods.encryptPassword = async (password) => {
+UserSchema.methods.encryptPassword = async password => {
     const salt = await bcrypt.genSalt(10);
-    bcrypt.hash(password,salt);
+    return await bcrypt.hash(password,salt);
 }
 
 UserSchema.methods.matchPassword =async function (password) {

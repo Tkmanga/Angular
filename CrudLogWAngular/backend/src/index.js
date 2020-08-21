@@ -6,8 +6,9 @@ const methodOverride = require('method-override');
 const expSession = require('express-session');
 const flash = require('connect-flash');
 const path = require('path');
-
+const passport = require('passport');
 require('./database');
+require('./config/passport');
 
 //setting
 app.set('port', process.env.PORT || 3000);
@@ -28,13 +29,15 @@ app.use(expSession({
     resave: true,
     saveUninitialized: true
 }));
-app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use(flash());
 //global variables
 app.use((req,res,next)=>{
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
-
+    res.locals.error = req.flash('error');
     next();
 })
 

@@ -2,10 +2,20 @@ const express = require('express');
 const router = express.Router();
 const {body,validationResult,check} = require('express-validator');
 const User = require('../models/User');
+const passport = require('passport');
 
-router.get('/user/signin',((req, res) => {
+
+router.get('/user/signin',(req, res) => {
   res.render('users/signin.hbs');
+});
+
+
+router.post('/user/signin',passport.authenticate('local',{
+    successRedirect: '/notes',
+    failureRedirect: '/user/signin',
+    failureFlash: true
 }));
+
 
 router.get('/user/signup',((req, res) => {
     res.render('users/signup.hbs');
