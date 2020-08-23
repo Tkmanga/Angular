@@ -42,24 +42,31 @@ router.post('/user/signup',
             errorsArray.push({text: obj.msg});
         })
 
-
         if(!errores.isEmpty()){
             res.render('users/signup',{errorsArray,name, email, password, confirm_password});
         }else{
 
             const emailUser = await User.findOne({email:email})
+
             if(emailUser){
-                req.flash('error_msg','You are registered');
-                res.redirect('/user/signup');
+
+                res.render('users/signup',{error: 'email is used',name});
+            }else{
+                const newUser = new User({name,email,password});
+                newUser.password = await newUser.encryptPassword(password);
+                await newUser.save()
+                req.flash('success_msg','You are registered');
+                res.redirect('/user/signin');
             }
 
-            const newUser = new User({name,email,password});
-            newUser.password = await newUser.encryptPassword(password);
-            await newUser.save();
-            req.flash('success_msg','You are registered');
-            res.redirect('/user/signin')
         }
 
 });
+
+router.get('/user/logout',(req, res) => {
+    req.logout();
+    req.flash('success_msg','you are logged out now');
+    res.redirect('/');
+})
 
 module.exports = router;

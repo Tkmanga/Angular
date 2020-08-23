@@ -9,11 +9,14 @@ const path = require('path');
 const passport = require('passport');
 require('./database');
 require('./config/passport');
+const Handlebars = require('handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 
 //setting
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname,'views'));
 app.engine('.hbs',exphbs({
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views'),'layouts'),
     partialsDir: path.join(app.get('views'),'partials'),
@@ -38,6 +41,7 @@ app.use((req,res,next)=>{
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
+    res.locals.user =  req.user;
     next();
 })
 

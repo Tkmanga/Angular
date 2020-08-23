@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Note = require('../models/note');
+const {isAuthenticated} = require('../helpers/auth');
 
-router.get('/notes/add', ((req, res) => {
+
+router.get('/notes/add', isAuthenticated,(req, res) => {
     res.render('notes/new-note');
-}))
+});
 
-router.post('/notes/new-notes',async (req, res) => {
+router.post('/notes/new-notes', isAuthenticated,async (req, res) => {
     const {title, description} = req.body;
     const errors = [ ];
     if(!title){
@@ -22,14 +24,18 @@ router.post('/notes/new-notes',async (req, res) => {
             description
         });
     }else{
+
         const newNote = new Note({title,description});
+        newNote.user = req.user._id;
+        console.log(newNote);
         await newNote.save();
+
         req.flash('success_msg','Note Added Succesfully');
         res.redirect('/notes');
     }
 })
 
-router.get('/notes',async (req, res) => {
+router.get('/notes', isAuthenticated,async (req, res) => {
     await Note.find().sort({date: 'desc'})
         .then(documentos =>{
             const contexto = {
@@ -45,7 +51,7 @@ router.get('/notes',async (req, res) => {
         })
 });
 
-router.get('/notes/edit/:id', async (req, res) => {
+router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
     const note = await Note.findById(req.params.id)
         .then(
             data => {
@@ -60,7 +66,7 @@ router.get('/notes/edit/:id', async (req, res) => {
 
 })
 
-router.put('/notes/edit-note/:id',async  (req, res) => {
+router.put('/notes/edit-note/:id', isAuthenticated,async  (req, res) => {
     const {title, description} = req.body;
     await Note.findByIdAndUpdate(req.params.id,{title,description})
         .then(
@@ -70,7 +76,7 @@ router.put('/notes/edit-note/:id',async  (req, res) => {
 
 })
 
-router.delete('/notes/delete/:id',async (req, res) => {
+router.delete('/notes/delete/:id', isAuthenticated,async (req, res) => {
     await Note.findByIdAndDelete(req.params.id)
         .then(
             res.redirect('/notes')

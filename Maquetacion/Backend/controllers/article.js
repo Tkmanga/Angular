@@ -239,7 +239,7 @@ var controller = {
             });
         }else{
 
-            //valido es todo ?
+            //valido es to do
             var articleId = req.params.id;
             //buscr el articulo asignarle el nombre de la imagen y actualizarlo
 
