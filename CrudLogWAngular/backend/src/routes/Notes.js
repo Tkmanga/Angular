@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Note = require('../models/note');
+const Note = require('../models/Note');
 const {isAuthenticated} = require('../helpers/auth');
 
 
@@ -24,19 +24,16 @@ router.post('/notes/new-notes', isAuthenticated,async (req, res) => {
             description
         });
     }else{
-
         const newNote = new Note({title,description});
         newNote.user = req.user._id;
-        console.log(newNote);
         await newNote.save();
-
         req.flash('success_msg','Note Added Succesfully');
         res.redirect('/notes');
     }
 })
 
 router.get('/notes', isAuthenticated,async (req, res) => {
-    await Note.find().sort({date: 'desc'})
+    await Note.find({user:req.user._id}).sort({date: 'desc'})
         .then(documentos =>{
             const contexto = {
                 notes: documentos.map(documento=>{
@@ -62,6 +59,7 @@ router.get('/notes/edit/:id', isAuthenticated, async (req, res) => {
                 }
             }
         )
+
     res.render('notes/edit-note',{note});
 
 })
